@@ -2,8 +2,12 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
+import data from './data';
+import { useState } from 'react';
 
 function App() {
+  let [shoes] = useState(data);
+
   return (
     <div className='App'>
       <Navbar expand='lg' className='bg-body-tertiary'>
@@ -29,8 +33,8 @@ function App() {
               width='80%'
               alt='product1'
             />
-            <h4>상품명</h4>
-            <p>상품정보</p>
+            <h4>{shoes[0].title}</h4>
+            <p>{shoes[0].price}</p>
           </div>
           <div className='col-md-4'>
             <img
