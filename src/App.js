@@ -4,11 +4,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
 import data from './data';
 import { useState } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
-import Detail from './detail';
+import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import Detail from './routes/Detail.js';
 
 function App() {
   let [shoes] = useState(data);
+  let navigate = useNavigate();
 
   return (
     <div className='App'>
@@ -18,8 +19,20 @@ function App() {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto'>
-              <Nav.Link href='/'>Home</Nav.Link>
-              <Nav.Link href='/detail'>Detail</Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  navigate('/');
+                }}
+              >
+                Home
+              </Nav.Link>
+              <Nav.Link
+                onClick={() => {
+                  navigate('/detail');
+                }}
+              >
+                Detail
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -41,14 +54,8 @@ function App() {
             </>
           }
         ></Route>
-        <Route
-          path='/detail'
-          element={
-            <div>
-              <Detail></Detail>
-            </div>
-          }
-        ></Route>
+        <Route path='/detail' element={<Detail></Detail>}></Route>
+        <Route path='*' element={<div>없는페이지요</div>}></Route>
       </Routes>
     </div>
   );
