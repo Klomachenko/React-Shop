@@ -6,10 +6,12 @@ import data from './data';
 import { useState } from 'react';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail.js';
+import { useParams } from 'react-router-dom';
 
 function App() {
   let [shoes] = useState(data);
   let navigate = useNavigate();
+  let { id } = useParams();
 
   return (
     <div className='App'>
@@ -47,7 +49,14 @@ function App() {
               <div className='container'>
                 <div className='row'>
                   {shoes.map(function (a, i) {
-                    return <Card shoes={shoes[i]} i={i} />;
+                    return (
+                      <Card
+                        shoes={shoes[i]}
+                        i={i}
+                        navigate={navigate}
+                        id={id}
+                      />
+                    );
                   })}
                 </div>
               </div>
