@@ -5,6 +5,7 @@ import './App.css';
 import data from './data';
 import { useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import Detail from './detail';
 
 function App() {
   let [shoes] = useState(data);
@@ -40,7 +41,14 @@ function App() {
             </>
           }
         ></Route>
-        <Route path='/detail' element={<div>상세페이지임</div>}></Route>
+        <Route
+          path='/detail'
+          element={
+            <div>
+              <Detail></Detail>
+            </div>
+          }
+        ></Route>
       </Routes>
     </div>
   );
