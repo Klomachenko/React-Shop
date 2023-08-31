@@ -2,14 +2,18 @@ import { useParams } from "react-router-dom"
 import styled from "styled-components";
 
 let YellowBtn = styled.button`
-    background : yellow;
-    color : blakc;
-    padding : 10px;
+    background : ${props => props.bg};
+    color : ${props => props.bg == 'blue' ? 'white' : 'black'};
+    padding: 10px;
 `
 
 let Box = styled.div`
-    background : grey;
-    padding : 20px;
+    background: #eee;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
 `
 
 function Detail(props) {
@@ -22,7 +26,8 @@ function Detail(props) {
     return (
         <div className="container">
             <Box>
-                <YellowBtn>버튼임</YellowBtn>
+                <YellowBtn bg='blue'>버튼임</YellowBtn>
+                <YellowBtn bg='yellow'>버튼임</YellowBtn>
             </Box>
             <div className="row">
                 <div className="col-md-6">
