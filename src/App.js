@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import './App.css';
 import data from './data';
 import { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
   let [shoes] = useState(data);
@@ -16,33 +17,31 @@ function App() {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='me-auto'>
-              <Nav.Link href='#home'>Home</Nav.Link>
-              <Nav.Link href='#link'>Cart</Nav.Link>
+              <Nav.Link href='/'>Home</Nav.Link>
+              <Nav.Link href='/detail'>Detail</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-      <div className='main-bg'></div>
-
-      <div className='container'>
-        <div className='row'>
-          {/* <Card shoes={shoes[0]} i={1} />
-          <Card shoes={shoes[1]} i={2} />
-          <Card shoes={shoes[2]} i={3} /> */}
-          {shoes.map(function (a, i) {
-            return <Card shoes={shoes[i]} i={i} />;
-          })}
-        </div>
-      </div>
-
-      {/* <Container>
-        <Row>
-          <Col>1 of 3</Col>
-          <Col>2 of 3</Col>
-          <Col>3 of 3</Col>
-        </Row>
-      </Container> */}
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <>
+              <div className='main-bg'></div>
+              <div className='container'>
+                <div className='row'>
+                  {shoes.map(function (a, i) {
+                    return <Card shoes={shoes[i]} i={i} />;
+                  })}
+                </div>
+              </div>
+            </>
+          }
+        ></Route>
+        <Route path='/detail' element={<div>상세페이지임</div>}></Route>
+      </Routes>
     </div>
   );
 }
