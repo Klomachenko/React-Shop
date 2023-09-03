@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
 
 function Detail(props) {
   let [alert, setAlert] = useState(true);
@@ -8,7 +9,7 @@ function Detail(props) {
     setTimeout(() => {
       setAlert(false);
     }, 2000);
-  });
+  }, []);
 
   let { id } = useParams();
   let 찾은상품 = props.shoes.find(function (data) {
