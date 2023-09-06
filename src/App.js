@@ -8,6 +8,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
 import Detail from './routes/Detail.js';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Cart from './routes/Cart';
 
 function App() {
   let [shoes, setShoes] = useState(data);
@@ -83,6 +84,8 @@ function App() {
           path='/detail/:id'
           element={<Detail shoes={shoes}></Detail>}
         ></Route>
+
+        <Route path='/cart' element={<Cart></Cart>}></Route>
       </Routes>
     </div>
   );
