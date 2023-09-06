@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
+import { tab } from '@testing-library/user-event/dist/tab';
 
 function Detail(props) {
   let [alert, setAlert] = useState(true);
+  let [tab, setTab] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
@@ -36,6 +38,59 @@ function Detail(props) {
           <button className='btn btn-danger'>주문하기</button>
         </div>
       </div>
+
+      <Nav variant='tabs' defaultActiveKey='link0'>
+        <Nav.Item>
+          <Nav.Link
+            eventKey='link0'
+            onClick={() => {
+              setTab(0);
+            }}
+          >
+            버튼0
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey='link1'
+            onClick={() => {
+              setTab(1);
+            }}
+          >
+            버튼1
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey='link2'
+            onClick={() => {
+              setTab(2);
+            }}
+          >
+            버튼2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab} />
+    </div>
+  );
+}
+
+function TabContent({ tab }) {
+  let [fade, setFade] = useState('');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setFade('end');
+    }, 100);
+    return () => {
+      setFade('');
+    };
+  }, [tab]);
+
+  return (
+    <div className={'start ' + fade}>
+      {[<div>내용0</div>, <div>내용1</div>, <div>내용2</div>][tab]}
     </div>
   );
 }
